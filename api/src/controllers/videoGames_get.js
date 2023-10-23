@@ -1,10 +1,12 @@
 const axios = require("axios");
-const URL = `https://api.rawg.io/api/games?key=2c3d1ac2d79445abad07b687fa48858b&page=1`;
-const { Videogame } = require("../db");
-
+const API_KEY = "2c3d1ac2d79445abad07b687fa48858b";
+/* const { API_KEY } = process.env; */
 const getGames = async (req, res) => {
+  
   try {
-    const {data} = await axios.get(URL);
+    console.log("LLAMADO DE TODOS LOS JUEGOS");
+    const URL = `https://api.rawg.io/api/games?key=${API_KEY}&page=1`;
+    const { data } = await axios.get(URL);
     if (data.results.length > 0) {
       const games = data.results;
       return res.status(200).json(games);

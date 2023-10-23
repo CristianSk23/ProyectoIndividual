@@ -2,7 +2,7 @@ const axios = require("axios");
 const { Videogame } = require("../db");
 
 const gameDetail = async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.value;
   try {
     console.log("Este es el id que llega por params " + id);
     const URL = `https://api.rawg.io/api/games/${id}?key=2c3d1ac2d79445abad07b687fa48858b`;
@@ -21,7 +21,7 @@ const gameDetail = async (req, res) => {
     }
 
     const gameDb = await Videogame.findById(id);
-    if (gameDb.length > 0) {
+    if (gameDb) {
       return res.status(200).json(gameDb);
     }
   } catch (error) {
