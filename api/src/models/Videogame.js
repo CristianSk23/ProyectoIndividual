@@ -1,11 +1,41 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('videogame', {
+  sequelize.define("videogame", {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
+    },
+
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+
+    description: { //* No se todavía de donde sacar la informacion
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
+    platforms: { //* Es un array de objetos, tendria que mapear toda la info
+      type: DataTypes.JSONB,
+      allowNull: false,
+    },
+
+    background_image: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    released: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    rating: {
+      type: DataTypes.DOUBLE,
       allowNull: false,
     },
   });
