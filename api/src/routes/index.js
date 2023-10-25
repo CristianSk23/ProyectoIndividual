@@ -10,8 +10,8 @@ const { getGenres } = require("../controllers/getGenres");
 const router = Router();
 
 router.get("/videogames", getGames);
+router.get("/videogames/name/", getByName);
 router.get("/videogames/:idVideogame", gameDetail);
-router.get("/videogames/name", getByName);
 router.get("/genres", getGenres);
 router.post("/videogames", postGame);
 
