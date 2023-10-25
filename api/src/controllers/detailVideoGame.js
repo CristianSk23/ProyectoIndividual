@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Videogame } = require("../db");
+const { Videogame, Genres } = require("../db");
 
 const gameDetail = async (req, res) => {
   const { idVideogame } = req.params; // Recibimos el ID del params
@@ -13,7 +13,10 @@ const gameDetail = async (req, res) => {
   try {
     if (isValidUUIDv4(idVideogame)) {
       //* Si es un ID UUIDV4 buscamos en la base de datos
-      const gameDb = await Videogame.findByPk(idVideogame);
+      const gameDb = await Videogame.findByPk(idVideogame, {
+        include: Genres,
+      });
+
       if (gameDb) {
         return res.status(200).json(gameDb);
       }

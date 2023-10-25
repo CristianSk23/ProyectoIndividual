@@ -1,12 +1,11 @@
 const axios = require("axios");
 const API_KEY = "2c3d1ac2d79445abad07b687fa48858b";
-const { Videogame } = require("../db");
+const { Videogame, Genres } = require("../db");
 const { Op } = require("sequelize");
 
 const getByName = async (req, res) => {
   try {
     const searchTerm = req.query.name;
-    console.log("Esta es el string a buscar " + searchTerm);
 
     const URL = `https://api.rawg.io/api/games?key=${API_KEY}&search=${searchTerm}`;
 
@@ -14,8 +13,9 @@ const getByName = async (req, res) => {
       where: {
         name: { [Op.iLike]: `%${searchTerm}%` },
       },
+
+      include: { model: Genres, trough: "user_Videogame" },
     });
-    console.log("Esto traigo de la base de datos " + gamesDB.id);
     const { data } = await axios.get(URL); //* Para buscar lo enviado por query en la API
 
     const gamesAPI = data.results.map((game) => ({
@@ -28,23 +28,23 @@ const getByName = async (req, res) => {
     }));
 
     let allResults = [];
-
-    if (gamesAPI.length > 0) {
-      console.log("hay algo en la api");
-      allResults = [...gamesAPI];
-    }
     if (gamesDB.length > 0) {
       gamesDB.forEach((game) => {
         allResults.push({
           id: game.id,
           name: game.name,
+          rating: game.rating,
+          platforms: game.platforms,
+          genres: game.genres,
         });
       });
+    }
 
-      allResults = [...gamesDB];
+    if (gamesAPI.length > 0) {
+      allResults.push(...gamesAPI);
     }
     if (allResults.length > 0) {
-      console.log(" Estos son los resultados: " + allResults);
+      allResults = allResults.slice(0, 15);
       return res.status(200).json(allResults);
     }
   } catch (error) {

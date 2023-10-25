@@ -9,10 +9,9 @@ const getGenres = async (req, res) => {
     const genresApi = data.results;
     if (genresApi) {
       genresApi.forEach(async (element) => {
-        const genres = await Genres.findOrCreate({
+        await Genres.findOrCreate({
           where: { id: element.id, name: element.name },
         });
-        console.log("Busque el elemento y lo cree con el ID: " + element.id);
       });
       return res.status(200).json(genresApi);
     }
