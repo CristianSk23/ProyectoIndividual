@@ -7,13 +7,12 @@ const getGenres = async (req, res) => {
   try {
     const { data } = await axios.get(URL);
     const genresApi = data.results;
-    console.log("Esto es lo que hay de data" + genresApi);
     if (genresApi) {
       genresApi.forEach(async (element) => {
         const genres = await Genres.findOrCreate({
           where: { id: element.id, name: element.name },
         });
-        console.log(genres);
+        console.log("Busque el elemento y lo cree con el ID: " + element.id);
       });
       return res.status(200).json(genresApi);
     }
