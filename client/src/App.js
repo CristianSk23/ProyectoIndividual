@@ -4,8 +4,6 @@ import { Routes, Route } from "react-router-dom";
 import InitialPage from "./components/initialPage/InitialPage";
 import { useLocation } from "react-router-dom";
 import Nav from "./components/nav/Nav";
-import onSearch from "./components/searchBar/SearchBar";
-import Card from "./components/card/Card";
 import axios from "axios";
 import Cards from "./components/cards/Cards";
 
@@ -13,19 +11,31 @@ function App() {
   const [videogames, setVideogames] = React.useState([]);
   const { pathname } = useLocation();
 
-  const onSearch = async (name)=>{
-    try {
-        const {data} = await axios(`http://localhost:3001/videogames/name/?name=${name}`) 
-
-        if (data) {
-          setVideogames(data);
-        }
-    } catch (error) {
-      
+  React.useEffect(() => {
+    const fetchVideoGames = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:3001/videogames/`);
+        setVideogames(data);
+      } catch (error) {
+        console.error("Error al cargar videojuegos", error);
+      }
+    };
+    if (pathname === "/home") {
+      fetchVideoGames();
     }
-  }
+  }, [pathname]);
 
+  const onSearch = async (name) => {
+    try {
+      const { data } = await axios(
+        `http://localhost:3001/videogames/name/?name=${name}`
+      );
 
+      if (data) {
+        setVideogames(data);
+      }
+    } catch (error) {}
+  };
 
   return (
     <div className="App">

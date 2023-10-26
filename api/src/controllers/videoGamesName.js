@@ -21,11 +21,14 @@ const getByName = async (req, res) => {
     const gamesAPI = data.results.map((game) => ({
       id: game.id,
       name: game.name,
+      image: game.background_image,
       description: game.description,
       rating: game.rating,
       platforms: game.platforms,
       genres: game.genres,
     }));
+
+    console.log(gamesAPI.image);
 
     let allResults = [];
     if (gamesDB.length > 0) {
@@ -33,6 +36,7 @@ const getByName = async (req, res) => {
         allResults.push({
           id: game.id,
           name: game.name,
+          image: game.background_image,
           rating: game.rating,
           platforms: game.platforms,
           genres: game.genres,
