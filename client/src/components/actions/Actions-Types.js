@@ -1,4 +1,5 @@
-export const ADD_GAME= "ADD_GAME";
-export const GET_DETAIL = "GET_DETAIL";
-export const GET_DETAILNAME = "GET_DETAILNAME";
-export const GENRES = "GENRES";
+export const GET_GAMES ="GET_GAMES";
+export const FILTER= "FILTER";
+export const SOURCE = "SOURCE";
+export const ORDER = "ORDER";
+

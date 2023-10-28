@@ -1,16 +1,16 @@
-import { ADD_GAME, GET_DETAIL, GET_DETAILNAME, GENRES } from "./Actions-Types";
+import { GET_GAMES, FILTER, SOURCE, ORDER } from "./Actions-Types";
 import axios from "axios";
+const URLg = `http://localhost:3001/videogames/`;
 
-export const addFav = (character) => {
+export const getGames = () => {
   return async (dispatch) => {
     try {
-      console.log("Deberia despachar el personaje " + character.name);
-      const endpoint = "http://localhost:3001/rickandmorty/fav";
-      const { data } = await axios.post(endpoint, character);
+      const { data } = await axios(URLg);
+      const games = data;
 
-      dispatch({
-        type: ADD_FAV,
-        payload: data,
+      return dispatch({
+        type: GET_GAMES,
+        payload: games,
       });
     } catch (error) {
       throw Error(error.message);
@@ -18,25 +18,17 @@ export const addFav = (character) => {
   };
 };
 
-export const removeFav = (id) => {
-  return async (dispatch) => {
-    try {
-      const endpoint = "http://localhost:3001/rickandmorty/fav/" + id;
-      const characterRemove = (await axios.delete(endpoint)).data;
-      dispatch({
-        type: REMOVE_FAV,
-        payload: characterRemove,
-      });
-    } catch (error) {
-      throw Error(error.message);
-    }
-  };
-};
-
-export const filterCards = (gender) => {
+export const genreFilter = (genre) => {
   return {
     type: FILTER,
-    payload: gender,
+    payload: genre,
+  };
+};
+
+export const getSource = (source) => {
+  return {
+    type: SOURCE,
+    payload: source,
   };
 };
 
