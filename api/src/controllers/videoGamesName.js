@@ -6,6 +6,7 @@ const { Op } = require("sequelize");
 const getByName = async (req, res) => {
   try {
     const searchTerm = req.query.name;
+    console.log("termino de busqueda enviado desde el front " , searchTerm);
 
     const URL = `https://api.rawg.io/api/games?key=${API_KEY}&search=${searchTerm}`;
 
@@ -28,7 +29,7 @@ const getByName = async (req, res) => {
       genres: game.genres,
     }));
 
-    console.log(gamesAPI.image);
+    /* console.log(" Videojuegos traidos de la API con la busqueda " , gamesAPI); */
 
     let allResults = [];
     if (gamesDB.length > 0) {

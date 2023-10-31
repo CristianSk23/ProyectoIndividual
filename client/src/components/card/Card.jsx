@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-
+import "./style.css"
 const Card = ({ id, name, image, genres }) => {
   return (
-    <div>
+    <div   className="contentStyle">
       <Link to={`/detail/${id}`}>
         <h2>{name}</h2>
       </Link>
@@ -12,7 +12,7 @@ const Card = ({ id, name, image, genres }) => {
           <li key={genre.id}>{genre.name}</li>
         ))}
       </ul>
-      <img src={image} alt={name} />
+      <img className="imgGame" src={image} alt={name} />
     </div>
   );
 };

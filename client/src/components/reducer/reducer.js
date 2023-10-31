@@ -1,8 +1,17 @@
-import { GET_GAMES, FILTER, SOURCE, ORDER } from "../actions/Actions-Types";
+import {
+  GET_GAMES,
+  FILTER,
+  SOURCE,
+  ORDER,
+  SEARCH,
+  NEXT,
+  PREV,
+} from "../actions/Actions-Types";
 
 const initialState = {
   allGames: [],
   bckAllGames: [],
+  pagination: 1,
 };
 
 const reducer = (state = initialState, action) => {
@@ -25,6 +34,12 @@ const reducer = (state = initialState, action) => {
         allGames: [...filteredElement],
       };
 
+    case SEARCH:
+      return {
+        ...state,
+        allGames: [...action.payload],
+      };
+
     case SOURCE:
       return {
         ...state,
@@ -33,6 +48,16 @@ const reducer = (state = initialState, action) => {
     case ORDER:
       return {
         ...state,
+      };
+    case NEXT:
+      return {
+        ...state,
+        pagination: state.pagination + 1,
+      };
+    case PREV:
+      return {
+        ...state,
+        pagination: state.pagination - 1,
       };
     default:
       return {
