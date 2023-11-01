@@ -9,23 +9,23 @@ import Cards from "./components/cards/Cards";
 import Detail from "./components/detail/Detail";
 import { useDispatch, useSelector } from "react-redux";
 import FilterGames from "./components/filter/FilterGames";
-import { getGames, getName } from "./components/actions/actions";
+import { getGames, getName, paginado } from "./components/actions/actions";
 
 function App() {
-  const [bckAllGames, setBckAllVideoGames] = React.useState([]);
   const allGames = useSelector((state) => state.allGames);
-  const pagination = useSelector((state) => state.pagination);
-  const [page, setPage] = React.useState(0);
-   
-
-  console.log("Estado __", allGames);
-  console.log("Esto tiene el bckGames ", bckAllGames);
-
+  const bckAllGames = useSelector((state) => state.bckAllGames);
+  const games = useSelector((state) => state.gamesEdited);
+  
+  console.log("cantidad de elementos en allGames ", allGames.map(element => element.id));
+  console.log("cantidad de elementos en games ", games.map(element => element.id));
   const { pathname } = useLocation();
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(getGames(pagination));
+    if (bckAllGames.length === 0) {
+      dispatch(getGames());
+    }
   }, [bckAllGames]);
+
 
   const onSearch = async (name) => {
     dispatch(getName(name));
@@ -39,7 +39,7 @@ function App() {
       <div>{pathname === "/home" && <FilterGames />}</div>
       <Routes>
         <Route path="/" element={<InitialPage />} />
-        <Route path="/home" element={<Cards videogames={allGames} />} />
+        <Route path="/home" element={<Cards videogames={games} />} />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </div>

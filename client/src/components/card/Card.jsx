@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import "./style.css"
-const Card = ({ id, name, image, genres }) => {
+import "./style.css";
+const Card = ({ id, name, image, genres, rating }) => {
   return (
-    <div   className="contentStyle">
+    <div className="contentStyle">
       <Link to={`/detail/${id}`}>
         <h2>{name}</h2>
       </Link>
@@ -13,6 +13,7 @@ const Card = ({ id, name, image, genres }) => {
         ))}
       </ul>
       <img className="imgGame" src={image} alt={name} />
+      <p>RATING: {rating}</p>
     </div>
   );
 };

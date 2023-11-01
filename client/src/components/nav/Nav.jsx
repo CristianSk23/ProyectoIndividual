@@ -4,31 +4,65 @@ import { connect } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import Cards from "../cards/Cards";
-import { getGames, nextPage } from "../actions/actions";
+import { PrevPage, getGames, home, paginado } from "../actions/actions";
 
 const Nav = ({ onSearch }) => {
-  const pagination = useSelector((state) => state.pagination);
   const dispatch = useDispatch();
-  const nextHandler = () => {
-    dispatch(nextPage());
-    dispatch(getGames(pagination));
+  
+  const nextHandler = (event) => {
+    const pageAct = event.target.value;
+    dispatch(paginado(pageAct));
   };
-  const prevHandler = () => {
-    console.log("Cambiaria de página Prev");
+
+  const getHome = () => {
+    dispatch(home());
   };
 
   return (
     <nav className="contenNav">
       <SearchBar onSearch={onSearch} />
-      <Link to="/home">
-        <button id="styleButtomNav">Home</button>
-      </Link>
-      <button id="styleButtomNav" onClick={prevHandler}>
-        Prev
+      <button id="styleButtomNav" onClick={getHome}>
+        Home
       </button>
-      <button id="styleButtomNav" onClick={nextHandler}>
-        Next
-      </button>
+      <div> {/* Div contenedor de la lista de btns para paginado */}
+        <ul>
+          <li>
+            <button value={1} onClick={nextHandler}>
+              1
+            </button>
+          </li>
+          <li>
+            <button value={2} onClick={nextHandler}>
+              2
+            </button>
+          </li>
+          <li>
+            <button value={3} onClick={nextHandler}>
+              3
+            </button>
+          </li>
+          <li>
+            <button value={4} onClick={nextHandler}>
+              4
+            </button>
+          </li>
+          <li>
+            <button value={5} onClick={nextHandler}>
+              5
+            </button>
+          </li>
+          <li>
+            <button value={6} onClick={nextHandler}>
+              6
+            </button>
+          </li>
+          <li>
+            <button value={7} onClick={nextHandler}>
+              7
+            </button>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 };

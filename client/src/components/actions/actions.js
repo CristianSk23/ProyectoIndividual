@@ -1,21 +1,21 @@
 import {
   GET_GAMES,
   FILTER,
-  SOURCE,
+  ORIGIN,
   ORDER,
   SEARCH,
-  NEXT,
-  PREV,
+  PAGINADO,
+  HOME,
 } from "./Actions-Types";
 import axios from "axios";
 const URLg = `http://localhost:3001/videogames`;
 const URLs = `http://localhost:3001/videogames/name?`;
 
-export const getGames = (page) => {
-  console.log("Numero de pagina",page);
+export const getGames = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios(`${URLg}?page=${page}`);
+      const { data } = await axios(URLg);
+      console.log(data);
       const games = data;
 
       return dispatch({
@@ -35,13 +35,15 @@ export const genreFilter = (genre) => {
   };
 };
 
-export const getSource = (source) => {
+export const getOrigin = (source) => {
+  //* Nos filtra si los datos son de la API o de la BD
   return {
-    type: SOURCE,
+    type: ORIGIN,
     payload: source,
   };
 };
 export const getName = (value) => {
+  //*Hace un llamado de busqueda a la ruta donde buscará en la BD y en la API si algun elementos coincide con el criterio de búsqueda.
   return async (dispatch) => {
     try {
       const { data } = await axios(`${URLs}name=${value}`);
@@ -56,19 +58,27 @@ export const getName = (value) => {
   };
 };
 
-export const orderCards = (orden) => {
+export const order = (orden) => {
   return {
     type: ORDER,
     payload: orden,
   };
 };
-export const nextPage = () => {
+
+export const home = () => {
+  //* Nos carga todos los videojuegos traidos de el llamado a la ruta
   return {
-    type: NEXT,
+    type: HOME,
   };
 };
-export const PrevPage = () => {
+
+export const paginado = (index) => {
+  const maxGames = 15;
+  let firstIndex = parseInt(index) * maxGames;
+  console.log("indice del paginado ", firstIndex);
+  if (firstIndex === 100) return;
   return {
-    type: PREV,
+    type: PAGINADO,
+    payload: firstIndex,
   };
 };

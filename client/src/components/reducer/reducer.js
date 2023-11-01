@@ -1,17 +1,17 @@
 import {
   GET_GAMES,
   FILTER,
-  SOURCE,
+  ORIGIN,
   ORDER,
   SEARCH,
-  NEXT,
-  PREV,
+  PAGINADO,
+  HOME,
 } from "../actions/Actions-Types";
 
 const initialState = {
   allGames: [],
   bckAllGames: [],
-  pagination: 1,
+  gamesEdited: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,46 +19,81 @@ const reducer = (state = initialState, action) => {
     case GET_GAMES:
       return {
         ...state,
-        allGames: [...action.payload],
+        gamesEdited: [...action.payload].slice(0, 15),
+        allGames: [...state.gamesEdited],
         bckAllGames: [...action.payload],
       };
 
     case FILTER:
-      const filteredElement = state.bckAllGames.filter((element) => {
+      const filteredElement = state.allGames.filter((element) => {
         return element.genres.some(
           (genre) => genre.name.toLowerCase() === action.payload.toLowerCase()
         );
       });
+      if (filteredElement) {
+      }
       return {
         ...state,
-        allGames: [...filteredElement],
+        gamesEdited: [...filteredElement],
       };
 
     case SEARCH:
       return {
         ...state,
-        allGames: [...action.payload],
+        gamesEdited: [...action.payload],
       };
 
-    case SOURCE:
+    case ORIGIN:
+      let gamesFiltered;
+
+      if (action.payload === "DB") {
+        gamesFiltered = state.bckAllGames.filter(
+          (game) => !Number.isInteger(game.id)
+        );
+      } else if (action.payload === "API") {
+        gamesFiltered = state.bckAllGames.filter((game) =>
+          Number.isInteger(game.id)
+        );
+      }
+
       return {
         ...state,
+        gamesEdited: gamesFiltered,
       };
 
     case ORDER:
+      let gamesOrder = [];
+      if (action.payload === "A") {
+        gamesOrder = [...state.allGames].sort((a, b) => {
+          return a.name.localeCompare(b.name);
+        });
+      } else if (action.payload === "R") {
+        gamesOrder = [...state.allGames].sort((a, b) => {
+          return b.rating - a.rating;
+        });
+        console.log("ordenamiento por rating ", gamesOrder);
+      }
       return {
         ...state,
+        gamesEdited: [...gamesOrder],
       };
-    case NEXT:
+
+    case PAGINADO:
+      const allGamesTemp = state.bckAllGames.slice(
+        action.payload - 15,
+        action.payload
+      );
       return {
         ...state,
-        pagination: state.pagination + 1,
+        allGames: [...allGamesTemp],
+        gamesEdited: [...allGamesTemp],
       };
-    case PREV:
+    case HOME:
       return {
         ...state,
-        pagination: state.pagination - 1,
+        gamesEdited: [...state.allGames],
       };
+
     default:
       return {
         ...state,

@@ -1,38 +1,62 @@
 import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
-import { genreFilter, getSource, orderCards } from "../actions/actions";
+import { genreFilter, getOrigin, order, orderCards } from "../actions/actions";
 
 const FilterGames = () => {
   const dispatch = useDispatch();
 
   const handleCheck = (event) => {
-    dispatch(genreFilter(event.target.value));
-
+    const valor = event.target.value;
+    dispatch(genreFilter(valor));
+  };
+  const dataOrigin = (event) => {
+    const valor = event.target.value;
+    dispatch(getOrigin(valor));
+  };
+  const getOrder = (event) => {
+    const valor = event.target.value;
+    dispatch(order(valor));
   };
   return (
     <div>
-      <h4>Generos</h4>
-      <select onChange={handleCheck}>
-        <option value="Action">Action</option>
-        <option value="Adventure">Adventure</option>
-        <option value="Arcade">Arcade</option>
-        <option value="Board Games">Board Games</option>
-        <option value="Card">Card</option>
-        <option value="Casual">Casual</option>
-        <option value="Educational">Educational</option>
-        <option value="Family">Family</option>
-        <option value="Fighting">Fighting</option>
-        <option value="Indie">Indie</option>
-        <option value="Massively Multiplayer">Massively Multiplayer</option>
-        <option value="Puzzle">Puzzle</option>
-        <option value="Platformer">Platformer</option>
-        <option value="Racing">Racing</option>
-        <option value="RPG">RPG</option>
-        <option value="Shooter">Shooter</option>
-        <option value="Strategy">Strategy</option>
-        <option value="Simulation">Simulation</option>
-        <option value="Sports">Sports</option>
-      </select>
+      <div>
+        <h4>Generos</h4>
+        <select onChange={handleCheck}>
+          <option value="Action">Action</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Arcade">Arcade</option>
+          <option value="Board Games">Board Games</option>
+          <option value="Card">Card</option>
+          <option value="Casual">Casual</option>
+          <option value="Educational">Educational</option>
+          <option value="Family">Family</option>
+          <option value="Fighting">Fighting</option>
+          <option value="Indie">Indie</option>
+          <option value="Massively Multiplayer">Massively Multiplayer</option>
+          <option value="Puzzle">Puzzle</option>
+          <option value="Platformer">Platformer</option>
+          <option value="Racing">Racing</option>
+          <option value="RPG">RPG</option>
+          <option value="Shooter">Shooter</option>
+          <option value="Strategy">Strategy</option>
+          <option value="Simulation">Simulation</option>
+          <option value="Sports">Sports</option>
+        </select>
+      </div>
+      <div>
+        <h4>Origen</h4>
+        <select onChange={dataOrigin}>
+          <option value="DB">Base de Datos</option>
+          <option value="API">API</option>
+        </select>
+      </div>
+      <div>
+        <h4>Ordenar</h4>
+        <select onChange={getOrder}>
+          <option value="A">Alfabeto</option>
+          <option value="R">Rating</option>
+        </select>
+      </div>
     </div>
   );
 };
