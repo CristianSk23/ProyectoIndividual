@@ -1,0 +1,47 @@
+/* nav.css */
+
+.contenNav {
+    background-color: #111;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+  }
+  
+  #styleButtomNav {
+    background-color: #ff5722;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+  }
+  
+  #styleButtomNav:hover {
+    background-color: #ff3d00;
+  }
+  
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+  }
+  
+  li button {
+    background-color: #bd3b3b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  li button:hover {
+    background-color: #333;
+  }
+  

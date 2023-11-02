@@ -5,10 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import Cards from "../cards/Cards";
 import { PrevPage, getGames, home, paginado } from "../actions/actions";
+import "./style.css";
 
 const Nav = ({ onSearch }) => {
   const dispatch = useDispatch();
-  
+
   const nextHandler = (event) => {
     const pageAct = event.target.value;
     dispatch(paginado(pageAct));
@@ -24,7 +25,7 @@ const Nav = ({ onSearch }) => {
       <button id="styleButtomNav" onClick={getHome}>
         Home
       </button>
-      <div> {/* Div contenedor de la lista de btns para paginado */}
+      <div>
         <ul>
           <li>
             <button value={1} onClick={nextHandler}>
@@ -65,6 +66,8 @@ const Nav = ({ onSearch }) => {
       </div>
     </nav>
   );
+
+ 
 };
 
 export default Nav;

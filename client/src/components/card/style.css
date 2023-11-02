@@ -1,51 +1,56 @@
-/* Estilos generales */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    margin: 1%;
-    padding: 1%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
-}
+/* style.css */
 
-/* .contentStyle {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-} */
-
-/* Estilos de cada videojuego */
-.imgGame {
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.contentStyle {
+    border: 1px solid #ccc; /* Borde ligero */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+    color: #ffffff; /* Texto en color naranja */
     padding: 20px;
     text-align: center;
-    max-width: 300px;
-    border-radius: 5px;
-    flex: 0 0 calc(33.33% - 20px); /* Ancho para 3 columnas */
-    box-sizing: border-box;
-    margin: 1%; /* Agrega margen entre los videojuegos */
-}
+    margin: 10px;
+    width: 290px;
+    height: 200px;
+    
+  }
 
-/* Estilos de la imagen */
-.imgGame img {
-    width: 100%;
-    max-height: 200px;
-    object-fit: cover;
-    border-radius: 5px;
-}
-
-/* Estilos del título */
-.imgGame h3 {
-    font-size: 24px;
+  .contenInfoStyle{
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+  }
+  
+  .contentStyle h2 {
+    font-size: 20px;
     margin: 10px 0;
-    text-align: center;
-}
-
-/* Estilos de los párrafos */
-.imgGame p {
+    color: white
+  }
+  
+  .contentStyle h3 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .contentStyle ul {
+    list-style: none;
+    padding: 0;
+    align-items: center;
+  }
+  
+  .contentStyle li {
     font-size: 16px;
     margin: 5px 0;
-}
+  }
+  
+  .imgGame {
+    max-width: 40%;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 10px;
+  }
+  
+  .contentStyle p {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  /* Puedes personalizar aún más estos estilos según tus preferencias y necesidades */
+  

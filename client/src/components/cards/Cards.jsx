@@ -1,5 +1,4 @@
 import Card from "../card/Card";
-
 const Cards = ({ videogames }) => {
   return (
     <div>

@@ -1,5 +1,13 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.contenPage > div:first-child {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 3 columnas */
+  grid-template-rows: repeat(3, 1fr); /* 5 filas */
+  gap: 8px; /* Espacio entre elementos */
 }
 
 .App-logo {

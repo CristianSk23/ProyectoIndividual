@@ -24,6 +24,14 @@ const Detail = () => {
     return setVideogame({});
   }, [params?.id]);
 
+  
+  let  videogamesGenres = Videogame?.genres;
+  if (Array.isArray(videogamesGenres)) {
+    videogamesGenres = videogamesGenres.join(", ");
+  }
+  console.log(videogamesGenres);
+
+
   return (
     <div
       className="detail-container"
@@ -45,7 +53,7 @@ const Detail = () => {
           className="detail-description"
           dangerouslySetInnerHTML={{ __html: Videogame?.description }}
         />
-        <p>Generos: {Videogame?.genres}</p>
+        <p>Generos: {videogamesGenres}</p>
         <p>Fecha de lanzamiento: {Videogame?.released}</p>
         <h2>Rating: {Videogame?.rating}</h2>
       </div>

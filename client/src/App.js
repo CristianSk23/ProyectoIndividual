@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 import InitialPage from "./components/initialPage/InitialPage";
 import { useLocation } from "react-router-dom";
 import Nav from "./components/nav/Nav";
-import axios from "axios";
 import Cards from "./components/cards/Cards";
 import Detail from "./components/detail/Detail";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,12 +43,14 @@ function App() {
       <div id="navStyle">
         {pathname === "/home" && <Nav onSearch={onSearch} />}
       </div>
-      <div>{pathname === "/home" && <FilterGames stateBTN={stateBTN}/>}</div>
-      <Routes>
-        <Route path="/" element={<InitialPage />} />
-        <Route path="/home" element={<Cards videogames={games} />} />
-        <Route path="/detail/:id" element={<Detail />} />
-      </Routes>
+      <div>{pathname === "/home" && <FilterGames stateBTN={stateBTN} />}</div>
+      <div className="contenPage">
+        <Routes>
+          <Route path="/" element={<InitialPage />} />
+          <Route path="/home" element={<Cards videogames={games} />} />
+          <Route path="/detail/:id" element={<Detail />} />
+        </Routes>
+      </div>
     </div>
   );
 }
