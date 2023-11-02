@@ -1,0 +1,52 @@
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 95vw; /* Ancho del 100% del viewport */
+  height: 100vh;
+  padding: 20px;
+  margin-top: 0px;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente negro */
+  color: white; /* Color del texto en el contenido */
+}
+
+.detail-content {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7); /* Color de fondo ligeramente más claro */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(255, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.detail-image {
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 20px;
+  border: 5px solid #1f1f1f; /* Borde alrededor de la imagen */
+  border-radius: 50%; /* Forma circular para la imagen */
+}
+
+.detail-description {
+  margin: 20px;
+  text-align: left;
+  background-color: #1f1f1f; /* Color de fondo oscuro para la descripción */
+  border-radius: 5px;
+  padding: 20px;
+  border: 1px solid #333; /* Borde ligeramente más oscuro */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.detail-container h2 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.detail-container p {
+  font-size: 16px;
+  margin: 10px 0;
+}

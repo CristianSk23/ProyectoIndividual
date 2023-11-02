@@ -1,8 +1,14 @@
-import React, { useContext } from "react";
-import { useDispatch } from "react-redux";
-import { genreFilter, getOrigin, order, orderCards } from "../actions/actions";
+import {
+  genreFilter,
+  getOrigin,
+  home,
+  order,
+  orderCards,
+} from "../actions/actions";
 
-const FilterGames = () => {
+import { useDispatch } from "react-redux";
+
+const FilterGames = ({ stateBTN }) => {
   const dispatch = useDispatch();
 
   const handleCheck = (event) => {
@@ -11,12 +17,14 @@ const FilterGames = () => {
   };
   const dataOrigin = (event) => {
     const valor = event.target.value;
+
     dispatch(getOrigin(valor));
   };
   const getOrder = (event) => {
     const valor = event.target.value;
     dispatch(order(valor));
   };
+
   return (
     <div>
       <div>
@@ -45,17 +53,25 @@ const FilterGames = () => {
       </div>
       <div>
         <h4>Origen</h4>
-        <select onChange={dataOrigin}>
-          <option value="DB">Base de Datos</option>
-          <option value="API">API</option>
-        </select>
+        <button value="BD" onClick={dataOrigin} disabled={stateBTN}>
+          Base de Datos
+        </button>
+        <button value="API" onClick={dataOrigin}>
+          API
+        </button>
       </div>
+
       <div>
-        <h4>Ordenar</h4>
-        <select onChange={getOrder}>
-          <option value="A">Alfabeto</option>
-          <option value="R">Rating</option>
-        </select>
+        <h4>Rating</h4>
+        <button value="R" onClick={getOrder}>
+          Mayor Rating
+        </button>
+        <button value="RI" onClick={getOrder}>
+          Menor Rating
+        </button>
+        <button value="A" onClick={getOrder}>
+          Alfabeticamente
+        </button>
       </div>
     </div>
   );

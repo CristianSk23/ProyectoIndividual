@@ -31,6 +31,7 @@ const getGames = async (req, res) => {
         //description: element.description,
         rating: element.rating,
         platforms: element.platforms,
+        released: element.released,
         genres: element.genres,
       }));
       listAllGames.push(...allGamesDB)
@@ -44,6 +45,7 @@ const getGames = async (req, res) => {
         //description: game.description,
         rating: game.rating,
         platforms: game.platforms,
+        released: game.released,
         genres: game.genres,
       }));
 

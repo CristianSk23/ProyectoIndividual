@@ -1,5 +1,6 @@
 const axios = require("axios");
 const { Videogame, Genres } = require("../db");
+const API_KEY = `2c3d1ac2d79445abad07b687fa48858b`;
 
 const gameDetail = async (req, res) => {
   const { idVideogame } = req.params; // Recibimos el ID del params
@@ -22,16 +23,20 @@ const gameDetail = async (req, res) => {
       }
     } else {
       //* Si no es un ID UUIDV4 buscamos en la API
-      const URL = `https://api.rawg.io/api/games/${idVideogame}?key=2c3d1ac2d79445abad07b687fa48858b`;
+      const URL = `https://api.rawg.io/api/games/${idVideogame}?key=${API_KEY}`;
       const { data } = await axios.get(URL);
       if (data) {
         const game = {
+          id: data.id,
           name: data.name,
           description: data.description,
           rating: data.rating,
-          platforms: data.platforms,
-          genres: data.genres,
+          platforms: data.platforms.map((platform) => platform.platform.name), // Extraer los nombres de las plataformas
+          genres: data.genres.map((genre) => genre.name),
+          released: data.released,
+          image: data.background_image,
         };
+        console.log(game.genres);
         return res.status(200).json(game);
       }
     }
