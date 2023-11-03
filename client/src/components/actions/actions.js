@@ -6,10 +6,12 @@ import {
   SEARCH,
   PAGINADO,
   HOME,
+  POST,
 } from "./Actions-Types";
 import axios from "axios";
 const URLg = `http://localhost:3001/videogames`;
 const URLs = `http://localhost:3001/videogames/name?`;
+const URLp = `http://localhost:3001/videogames/`;
 
 export const getGames = () => {
   return async (dispatch) => {
@@ -80,5 +82,22 @@ export const paginado = (index) => {
   return {
     type: PAGINADO,
     payload: firstIndex,
+  };
+};
+
+export const postGame = (value) => {
+  console.log("Esto llegaría como nuevo videojuego", value);
+  axios
+    .post(URLp, value, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      console.log("Éxito:", response.data); // Maneja la respuesta exitosa del servidor
+    });
+  return {
+    type: POST,
+    payload: value,
   };
 };

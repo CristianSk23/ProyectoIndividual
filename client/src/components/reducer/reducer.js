@@ -6,6 +6,7 @@ import {
   SEARCH,
   PAGINADO,
   HOME,
+  POST,
 } from "../actions/Actions-Types";
 
 const initialState = {
@@ -104,6 +105,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         gamesEdited: [...state.bckAllGames],
       };
+
+      case POST:{
+
+      }
 
     default:
       return {

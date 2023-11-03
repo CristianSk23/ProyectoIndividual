@@ -43,7 +43,7 @@ const postGame = async (req, res) => {
       return res.status(201).send("Videojuego creado con éxito");
     }
   } catch (error) {
-    return res.status(500).send(error.message);
+    return res.status(500).send("No se pudo crear el videojuego");
   }
 };
 
