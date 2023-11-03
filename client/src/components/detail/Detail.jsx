@@ -1,13 +1,18 @@
 import React from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import "./style.css";
+import { useDispatch } from "react-redux"
+import { home } from "../actions/actions"
 
 const Detail = () => {
   const params = useParams();
   const id = params.id;
   const URL = `http://localhost:3001/videogames/${id}`;
   console.log("deberia ser el ID " + id);
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const navigate = useNavigate()
 
   const [Videogame, setVideogame] = React.useState();
 
@@ -24,13 +29,15 @@ const Detail = () => {
     return setVideogame({});
   }, [params?.id]);
 
-  
-  let  videogamesGenres = Videogame?.genres;
+  const backFn = () => {
+    navigate("/home")
+  };
+
+  let videogamesGenres = Videogame?.genres;
   if (Array.isArray(videogamesGenres)) {
     videogamesGenres = videogamesGenres.join(", ");
   }
   console.log(videogamesGenres);
-
 
   return (
     <div
@@ -39,6 +46,7 @@ const Detail = () => {
         backgroundImage: `url(${Videogame?.image})`,
       }}
     >
+      <button type="button" onClick={backFn}>Regresar</button>
       <div className="detail-content">
         <h2>ID: {Videogame?.id}</h2>
         <h2>{Videogame?.name}</h2>

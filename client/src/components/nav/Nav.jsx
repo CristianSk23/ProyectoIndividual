@@ -1,14 +1,13 @@
 import SearchBar from "../searchBar/SearchBar";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
-import Cards from "../cards/Cards";
-import { PrevPage, getGames, home, paginado } from "../actions/actions";
+import { home, paginado } from "../actions/actions";
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 
 const Nav = ({ onSearch }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const nextHandler = (event) => {
     const pageAct = event.target.value;
@@ -18,12 +17,19 @@ const Nav = ({ onSearch }) => {
   const getHome = () => {
     dispatch(home());
   };
+  const postGame = () => {
+    navigate("./form")
+  };
+
 
   return (
     <nav className="contenNav">
       <SearchBar onSearch={onSearch} />
       <button id="styleButtomNav" onClick={getHome}>
         Home
+      </button>
+      <button id="styleButtomNav" onClick={postGame}>
+        Crear <br/> Videojuego
       </button>
       <div>
         <ul>

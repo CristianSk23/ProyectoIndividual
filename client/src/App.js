@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import Nav from "./components/nav/Nav";
 import Cards from "./components/cards/Cards";
 import Detail from "./components/detail/Detail";
+import Form from "./components/formGame/Form";
 import { useDispatch, useSelector } from "react-redux";
 import FilterGames from "./components/filter/FilterGames";
 import { getGames, getName, paginado } from "./components/actions/actions";
@@ -49,6 +50,7 @@ function App() {
           <Route path="/" element={<InitialPage />} />
           <Route path="/home" element={<Cards videogames={games} />} />
           <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/form" element={<Form />} />
         </Routes>
       </div>
     </div>
