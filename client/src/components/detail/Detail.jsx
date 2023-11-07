@@ -2,8 +2,8 @@ import React from "react";
 import axios from "axios";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import "./style.css";
-import { useDispatch } from "react-redux"
-import { home } from "../actions/actions"
+import { useDispatch } from "react-redux";
+import { home } from "../actions/actions";
 
 const Detail = () => {
   const params = useParams();
@@ -12,11 +12,11 @@ const Detail = () => {
   console.log("deberia ser el ID " + id);
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [Videogame, setVideogame] = React.useState();
 
-  React.useState(() => {
+  React.useEffect(() => {
     axios(URL)
       .then(({ data }) => {
         if (data.name) {
@@ -30,14 +30,15 @@ const Detail = () => {
   }, [params?.id]);
 
   const backFn = () => {
-    navigate("/home")
+    navigate("/home");
   };
 
+  console.log("Este sería el videojuego que se escogió ", { Videogame });
+
   let videogamesGenres = Videogame?.genres;
-  if (Array.isArray(videogamesGenres)) {
+  if (Array.isArray(Videogame?.genres)) {
     videogamesGenres = videogamesGenres.join(", ");
   }
-  console.log(videogamesGenres);
 
   return (
     <div
@@ -46,7 +47,9 @@ const Detail = () => {
         backgroundImage: `url(${Videogame?.image})`,
       }}
     >
-      <button type="button" onClick={backFn}>Regresar</button>
+      <button type="button" onClick={backFn}>
+        Regresar
+      </button>
       <div className="detail-content">
         <h2>ID: {Videogame?.id}</h2>
         <h2>{Videogame?.name}</h2>
@@ -57,7 +60,7 @@ const Detail = () => {
           }}
         />
         <p> {Videogame?.platforms}</p>
-        <div
+         <div
           className="detail-description"
           dangerouslySetInnerHTML={{ __html: Videogame?.description }}
         />

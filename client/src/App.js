@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import InitialPage from "./components/initialPage/InitialPage";
@@ -48,9 +48,30 @@ function App() {
       <div className="contenPage">
         <Routes>
           <Route path="/" element={<InitialPage />} />
-          <Route path="/home" element={<Cards videogames={games} />} />
-          <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/form" element={<Form />} />
+          <Route
+            path="/home"
+            element={
+              <Suspense fallback={<h1>Loading...</h1>}>
+                <Cards videogames={games} />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/detail/:id"
+            element={
+              <Suspense fallback={<h1 color="red">Loading...</h1>}>
+                <Detail />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/form"
+            element={
+              <Suspense fallback={<h1 color="white">Loading...</h1>}>
+                <Form />
+              </Suspense>
+            }
+          />
         </Routes>
       </div>
     </div>

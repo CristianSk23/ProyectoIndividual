@@ -1,4 +1,71 @@
-.contenForm{
-    color: white;
-    background-color: rgb(0, 35, 111);
+/* Form.css */
+.contenForm {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contenInput {
+  width: 1050px;
+  padding-top: 10px;
+  padding-left: 20%;
+}
+.contenPlatforms {
+  width:1000px;
+  height: 150px;
+  padding-left: 40%;
+  display: grid;
+
+  grid-template-columns: repeat(4, 0.1fr); /* Distribuye en bloques de 5 */
+  grid-template-rows: repeat(1, 0.5fr); /* Distribuye en 3 líneas */
+}
+.contenGenres {
+  width:1000px;
+  height: 150px;
+  padding-left: 30%;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  grid-template-columns: repeat(7, 0.1fr); /* Distribuye en bloques de 5 */
+  grid-template-rows: repeat(3, 0.5fr); /* Distribuye en 3 líneas */
+}
+
+
+
+input[type="text"],
+input[type="date"],
+input[type="number"] {
+  display: inline-block;
+  width: 60%; /* Ajusta el ancho según tus preferencias */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Distribuye en bloques de 5 */
+  grid-template-rows: repeat(3, auto); /* Distribuye en 3 líneas */
+  gap: 10px;
+}
+
+button[type="submit"] {
+  display: block;
+  width: 20%;
+  padding: 10px;
+  margin-top: 20px;
+  margin-left: 40%;
+  background-color: #ff7b00;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #b35400;
 }

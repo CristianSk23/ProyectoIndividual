@@ -1,12 +1,15 @@
 import "./style.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postGame } from "../actions/actions";
+import React from "react";
+import Validation from "./Validation";
 
 const Form = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [errors, setErrors] = React.useState({});
   const [gameData, setGameData] = useState({
     name: "",
     description: "",
@@ -16,13 +19,29 @@ const Form = () => {
     platforms: [],
     genres: [],
   });
+
+  useEffect(() => {
+    if (
+      gameData.name !== "" ||
+      gameData.description !== "" ||
+      gameData.background_image !== "" ||
+      gameData.released !== "" ||
+      gameData.platforms.length !== 0
+    ) {
+      const gameValidate = Validation(gameData);
+      setErrors(gameValidate);
+    }
+  }, [gameData]);
+
   const handleChange = (event) => {
+    //Recibe la info que enviamos por event.target
+
     const { name, value, checked } = event.target;
 
     setGameData((data) => {
       if (name === "platforms") {
         if (checked) {
-          // Marcar la casilla
+          //* marca el Chek
           return {
             ...data,
             platforms: [...data.platforms, { name: value }],
@@ -39,13 +58,12 @@ const Form = () => {
         }
       } else if (name === "genres") {
         if (checked) {
-          // Marcar la casilla
+          //* marca el Chek
           return {
             ...data,
             genres: [...data.genres, { name: value }],
           };
         } else {
-          // Desmarcar la casilla
           const updatedGenres = data.genres.filter(
             (genre) => genre.name !== value
           );
@@ -64,21 +82,22 @@ const Form = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    //*Envia la informacion recolectada del form
+    event.preventDefault(); //* Evita que la página se reecargue cuando se envía el formulario
 
     try {
       const gameJSON = JSON.stringify(gameData);
-      console.log("Este sería el videojuego creado", gameJSON);
       dispatch(postGame(gameJSON));
-      // Restablece el formulario
-    } catch (error) {
-      console.error("Error al enviar los datos del formulario:", error);
-    }
+      alert("Videojuego creado con exito");
+      navigate("/home");
+    } catch (error) {}
+  };
+  const volverBtn = () => {
+    navigate("/home")
   };
 
-  console.log("Así va el estado del nuevo videojuego ", gameData);
-
   const genresList = [
+    //* lista de los 19 generos para los chekBox
     "Action",
     "Adventure",
     "RPG",
@@ -100,6 +119,7 @@ const Form = () => {
     "Fighting",
   ];
   const platformsList = [
+    //* Lista de las plataformas para la chekbox de plataforma
     "Android",
     "iOS",
     "Pc",
@@ -110,46 +130,70 @@ const Form = () => {
     "Nintendo Switch",
   ];
 
-  return (
-    <form className="contenForm" onSubmit={handleSubmit}>
-      <div></div>
-      <label htmlFor="name">Nombre</label>
-      <input
-        type="text"
-        name="name"
-        value={gameData.name}
-        onChange={handleChange}
-      />
-      <hr />
-      <label htmlFor="description">Descripcion</label>
-      <input
-        type="text"
-        name="description"
-        value={gameData.description}
-        onChange={handleChange}
-      />
-      <hr />
-      <label htmlFor="released">Fecha</label>
-      <input
-        type="date"
-        name="released"
-        value={gameData.released}
-        onChange={handleChange}
-      />
-      <hr />
-      <label htmlFor="rating">Rating</label>
-      <input
-        type="number"
-        name="rating"
-        min={1}
-        max={5}
-        value={gameData.rating}
-        onChange={handleChange}
-      />
+  console.log("Sería la cantidad de errores", Object.keys(errors).length > 0);
 
-      <div>
+  return (
+    //* Retorna los elementos del formulario para el llenado de informacion
+    <form className="contenForm" onSubmit={handleSubmit}>
+      <div className="contenInput">
+        <label htmlFor="name">Nombre</label>
+        <div>
+          <input
+            type="text"
+            name="name"
+            value={gameData.name}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+
+      {errors.name && <p id="errorText">{errors.name}</p>}
+
+      <div className="contenInput">
+        <label htmlFor="description">Descripcion</label>
+        <div>
+          <input
+            type="text"
+            name="description"
+            value={gameData.description}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+
+      {errors.description && <p id="errorText">{errors.description}</p>}
+
+      <div className="contenInput">
+        <label htmlFor="released">Fecha</label>
+        <div>
+          <input
+            type="date"
+            name="released"
+            value={gameData.released}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+
+      {errors.released && <p id="errorText">{errors.released}</p>}
+
+      <div className="contenInput">
+        <label htmlFor="rating">Rating</label>
+        <div>
+          <input
+            type="number"
+            name="rating"
+            min={1}
+            max={5}
+            value={gameData.rating}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+
+      <div className="contenInput">
         <h2>Ingresa la URL de tu imagen</h2>
-        <label htmlFor="background_image">Image</label>
+        <label htmlFor="background_image"></label>
         <input
           type="text"
           name="background_image"
@@ -158,8 +202,14 @@ const Form = () => {
         />
       </div>
 
+      {errors.background_image && (
+        <p id="errorText">{errors.background_image}</p>
+      )}
+
       <div>
         <h2>Selecciona las plataformas: </h2>
+      </div>
+      <div className="contenPlatforms">
         {platformsList.map((platmor) => (
           <label key={platmor}>
             <input
@@ -173,8 +223,10 @@ const Form = () => {
         ))}
       </div>
 
-      <div>
-        <h2>Selecciona los géneros:</h2>
+      {errors.platforms && <p id="errorText">{errors.platforms}</p>}
+
+      <h2>Selecciona los géneros:</h2>
+      <div className="contenGenres">
         {genresList.map((genre) => (
           <label key={genre}>
             <input
@@ -186,98 +238,17 @@ const Form = () => {
             {genre}
           </label>
         ))}
-        <button type="submit">Guardar</button>
       </div>
+      {errors.genres && <p id="errorText">{errors.genres}</p>}
+
+      <button type="submit" disabled={Object.keys(errors).length > 0}>
+        Guardar
+      </button>
+      <button onClick={volverBtn}>
+        Volver
+      </button>
     </form>
   );
 };
 
 export default Form;
-
-/* 
-
-   <div>
-        {" "}
-        //* Div que contiene los checkbox de las plataformas
-        <label>
-          <input
-            type="checkbox"
-            name="platforms"
-            value="Android"
-            onChange={handleChange}
-          />
-          Android
-        </label>
-        <br />
-        <label>
-          <input
-            type="checkbox"
-            name="platforms"
-            value="iOS"
-            onChange={handleChange}
-          />
-          iOS
-        </label>
-        <br />
-        <label>
-          <input
-            type="checkbox"
-            name="platforms"
-            value="Pc"
-            onChange={handleChange}
-          />
-          PC
-        </label>
-        <br />
-        <label>
-          <input
-            type="checkbox"
-            name="platforms"
-            value="PlayStation4"
-            onChange={handleChange}
-          />
-          PlayStation 4
-        </label>
-        <br />
-        <label>
-          <input
-            type="checkbox"
-            name="platforms"
-            value="PlayStation 5"
-            onChange={handleChange}
-          />
-          PlayStation 5
-        </label>
-        <br />
-        <label>
-          <input
-            type="checkbox"
-            name="platforms"
-            value="Xbox Series X"
-            onChange={handleChange}
-          />{" "}
-          Xbox Series X
-        </label>
-        <br />
-        <label>
-          <input
-            type="checkbox"
-            name="platforms"
-            value="Xbox One"
-            onChange={handleChange}
-          />{" "}
-          Xbox One
-        </label>
-        <br />
-        <label>
-          <input
-            type="checkbox"
-            name="platforms"
-            value="Nintendo Switch"
-            onChange={handleChange}
-          />
-          Nintendo Switch
-        </label>
-      </div>
-
- */

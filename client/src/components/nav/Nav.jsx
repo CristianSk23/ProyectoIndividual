@@ -1,7 +1,7 @@
 import SearchBar from "../searchBar/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
-import { home, paginado } from "../actions/actions";
+import { paginado } from "../actions/actions";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 
@@ -13,24 +13,16 @@ const Nav = ({ onSearch }) => {
     const pageAct = event.target.value;
     dispatch(paginado(pageAct));
   };
-
-  const getHome = () => {
-    dispatch(home());
-  };
   const postGame = () => {
-    navigate("./form")
+    navigate("./form");
   };
-
 
   return (
     <nav className="contenNav">
-      <SearchBar onSearch={onSearch} />
-      <button id="styleButtomNav" onClick={getHome}>
-        Home
-      </button>
       <button id="styleButtomNav" onClick={postGame}>
-        Crear <br/> Videojuego
+        Crear <br /> Videojuego
       </button>
+      <SearchBar onSearch={onSearch} />
       <div>
         <ul>
           <li>
@@ -72,8 +64,6 @@ const Nav = ({ onSearch }) => {
       </div>
     </nav>
   );
-
- 
 };
 
 export default Nav;

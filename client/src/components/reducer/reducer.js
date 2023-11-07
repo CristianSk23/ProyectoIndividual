@@ -13,7 +13,7 @@ const initialState = {
   allGames: [],
   bckAllGames: [],
   gamesEdited: [],
-  btnBD: true,
+  btnBD: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -48,20 +48,22 @@ const reducer = (state = initialState, action) => {
       };
 
     case ORIGIN:
-      let gamesFiltered;
-      let btnBDaux = true;
-      if (action.payload === "DB") {
-        gamesFiltered = [...state.allGames].filter(
-          (game) => !Number.isInteger(game.id)
-        );
+      let gamesFiltered = [];
+      let btnBDaux;
+      if (action.payload === "BD") {
+        gamesFiltered = [...state.bckAllGames].filter((game) => isNaN(game.id));
         if (gamesFiltered) {
+          console.log("Tengo datos en la BD", gamesFiltered);
           btnBDaux = false;
         }
       } else if (action.payload === "API") {
+        console.log("Estaría filtrando datos para la API");
         gamesFiltered = [...state.allGames].filter((game) =>
           Number.isInteger(game.id)
         );
       }
+      if (!gamesFiltered) console.log("no hay datos en la BD");
+      console.log("Debería retornar todos los videojuegos", gamesFiltered);
       return {
         ...state,
         gamesEdited: gamesFiltered,
@@ -71,17 +73,17 @@ const reducer = (state = initialState, action) => {
     case ORDER:
       let gamesOrder = [];
       if (action.payload === "R") {
-        gamesOrder = [...state.allGames].sort((a, b) => {
+        gamesOrder = [...state.gamesEdited].sort((a, b) => {
           return b.rating - a.rating;
         });
       }
       if (action.payload === "RI") {
-        gamesOrder = [...state.allGames].sort((a, b) => {
+        gamesOrder = [...state.gamesEdited].sort((a, b) => {
           return a.rating - b.rating;
         });
       }
       if (action.payload === "A") {
-        gamesOrder = [...state.allGames].sort((a, b) => {
+        gamesOrder = [...state.gamesEdited].sort((a, b) => {
           return a.name.localeCompare(b.name);
         });
       }
@@ -103,12 +105,15 @@ const reducer = (state = initialState, action) => {
     case HOME:
       return {
         ...state,
-        gamesEdited: [...state.bckAllGames],
+        gamesEdited: [...state.allGames],
       };
 
-      case POST:{
-
-      }
+    case POST: {
+      return {
+        ...initialState,
+        btnBD: false,
+      };
+    }
 
     default:
       return {

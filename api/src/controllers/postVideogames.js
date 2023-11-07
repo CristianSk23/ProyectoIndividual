@@ -12,7 +12,6 @@ const postGame = async (req, res) => {
     released,
     background_image,
   } = req.body;
-  //console.log(name, description, rating, platforms, genres);
 
   const existingGame = await Videogame.findOne({
     where: { name: { [Op.iLike]: `%${name}%` } },
@@ -31,13 +30,17 @@ const postGame = async (req, res) => {
       released,
       background_image,
     });
+    console.log("El videojuego creado sería...", newVideoGame);
 
     for (const genreData of genres) {
       const { name } = genreData;
       const foundGenres = await Genres.findAll({
         where: { name },
       });
-      await newVideoGame.addGenres(foundGenres);
+
+      if (foundGenres) {
+        await newVideoGame.addGenre(foundGenres);
+      }
     }
     if (newVideoGame) {
       return res.status(201).send("Videojuego creado con éxito");

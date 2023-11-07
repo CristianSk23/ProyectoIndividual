@@ -24,6 +24,9 @@ const FilterGames = ({ stateBTN }) => {
     const valor = event.target.value;
     dispatch(order(valor));
   };
+  const reset =() =>{
+    dispatch(home())
+  }
 
   return (
     <div>
@@ -72,6 +75,10 @@ const FilterGames = ({ stateBTN }) => {
         <button value="A" onClick={getOrder}>
           Alfabeticamente
         </button>
+        <button onClick={reset}>Reset</button>
+      </div>
+
+      <div>
       </div>
     </div>
   );

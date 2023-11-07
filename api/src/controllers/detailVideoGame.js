@@ -19,7 +19,17 @@ const gameDetail = async (req, res) => {
       });
 
       if (gameDb) {
-        return res.status(200).json(gameDb);
+        const gameAuxDB = {
+          id: gameDb.id,
+          name: gameDb.name,
+          description: gameDb.description,
+          rating: gameDb.rating,
+          platforms: gameDb.platforms.map((platform) => platform.name),
+          genres: gameDb.genres.map((genre) => genre.dataValues.name),
+          released: gameDb.released,
+          image: gameDb.background_image,
+        };
+        return res.status(200).json(gameAuxDB);
       }
     } else {
       //* Si no es un ID UUIDV4 buscamos en la API

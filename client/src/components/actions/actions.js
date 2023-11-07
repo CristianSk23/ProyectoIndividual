@@ -9,9 +9,9 @@ import {
   POST,
 } from "./Actions-Types";
 import axios from "axios";
-const URLg = `http://localhost:3001/videogames`;
-const URLs = `http://localhost:3001/videogames/name?`;
-const URLp = `http://localhost:3001/videogames/`;
+const URLg = `http://localhost:3001/videogames`; //* Ruta para traer los videojuegos 
+const URLs = `http://localhost:3001/videogames/name?`; //* Ruta para buscar videjuegos por su nombre
+const URLp = `http://localhost:3001/videogames/`; //* Ruta para postear videojuegos
 
 export const getGames = () => {
   return async (dispatch) => {
@@ -86,7 +86,7 @@ export const paginado = (index) => {
 };
 
 export const postGame = (value) => {
-  console.log("Esto llegaría como nuevo videojuego", value);
+  console.log("Esto llega como videojuego ", value);
   axios
     .post(URLp, value, {
       headers: {
@@ -95,7 +95,11 @@ export const postGame = (value) => {
     })
     .then((response) => {
       console.log("Éxito:", response.data); // Maneja la respuesta exitosa del servidor
+    })
+    .catch((error) => {
+      throw Error(error.message);
     });
+
   return {
     type: POST,
     payload: value,

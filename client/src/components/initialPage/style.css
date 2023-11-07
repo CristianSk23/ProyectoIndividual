@@ -1,0 +1,82 @@
+.initialContent {
+  color: white;
+  border-radius: 20px;
+  border-color: white;
+  background-image: url("./resources/initial.gif");
+  background-size: 100%;
+  height: 930px;
+  /*ANIMACIONES*/
+}
+.contenInfo {
+  background-color: RGB(0, 0, 0, 0.5);
+  text-align: center;
+  padding: 20%;
+  margin-top: 50%;
+  margin-left: 100%;
+  width: 500px;
+  height: 200px;
+  border-radius: 10px;
+  transition-property: transform;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(1, 0, 0, 1);
+  animation: animacionInitial 3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+@keyframes animacionH1 {
+  0% {
+    transform: scale(0.8);
+    border-radius: 5px;
+    color: rgb(0, 204, 255);
+  }
+  50% {
+    transform: scale(1);
+    border-radius: 50px;
+  }
+  100% {
+    transform: scale(0.8);
+    border-radius: 5px;
+    border-color: rgb(136, 18, 18);
+  }
+}
+@keyframes animacionInitial {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.contenInfo h1 {
+  font-size: 80px;
+  padding: 0;
+  margin: 0;
+  animation: animacionH1 3s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
+  font-family: "PT Sans Narrow", sans-serif;
+}
+.contenInfo h2 {
+  font-size: 40px;
+  padding: 0;
+  margin: 0;
+  color: rgb(224, 143, 85);
+  border-radius: 20px;
+  animation: animacionH2 2s cubic-bezier(0.95, 0.05, 0.795, 0.035) infinite;
+  font-family: "PT Sans Narrow", sans-serif;
+}
+.contenInfo:hover {
+  transform: scale(1.1);
+}
+
+#styleBtnInitial {
+  padding: 10px;
+  margin: 20px;
+  font-family: 15px;
+  font-family: "Passion One", sans-serif;
+}
+#styleBtnInitial:hover {
+  padding: 10px;
+  margin: 20px;
+  transform: scale(1.2);
+  font-family: 15px;
+  font-family: "Passion One", sans-serif;
+  cursor: pointer;
+}
