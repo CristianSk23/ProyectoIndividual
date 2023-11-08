@@ -1,34 +1,41 @@
 /* Form.css */
 .contenForm {
-  max-width: 1920px;
+  background-image: url("./resources/initial.gif");
+  background-size: 100%;
+
+}
+
+.contenFormStyle {
+  max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f7f7f7;
+  background-color: rgba(177, 241, 252, 0.472);
   border: 1px solid #ccc;
   border-radius: 5px;
   font-family: "PT Sans Narrow", sans-serif; /*Font para el titulo*/
 }
 
 .contenInput {
-  width: 1050px;
+  width: 1000px;
   padding-top: 10px;
-  padding-left: 20%;
+  padding-left: 15%;
   font-size: 25px;
   font-family: "PT Sans Narrow", sans-serif; /*Font para el titulo*/
 }
 .contenPlatforms {
   width: 1000px;
   height: 150px;
-  padding-left: 40%;
+  padding-left: 35%;
   display: grid;
   font-family: "PT Sans Narrow", sans-serif; /*Font para el titulo*/
   grid-template-columns: repeat(4, 0.1fr); /* Distribuye en bloques de 5 */
   grid-template-rows: repeat(1, 0.5fr); /* Distribuye en 3 líneas */
 }
+
 .contenGenresList {
   width: 1000px;
   height: 150px;
-  padding-left: 30%;
+  padding-left: 25%;
   display: grid;
   align-items: center;
   text-align: center;
@@ -44,16 +51,20 @@ input[type="number"] {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: rgb(143, 249, 255);
+  color: black;
 }
 
 input[type="checkbox"] {
-  margin-right: 5px;
+  margin-left: 30px;
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* Distribuye en bloques de 5 */
   grid-template-rows: repeat(3, 0.5fr); /* Distribuye en 3 líneas */
   gap: 10px;
   justify-content: center;
   text-align: center;
+  background-color: rgb(254, 147, 97);
+  font-size: 50px;
 }
 
 button[type="submit"] {
@@ -62,7 +73,7 @@ button[type="submit"] {
   padding: 10px;
   margin-top: 20px;
   margin-left: 40%;
-  background-color: #ff7b00;
+  background-color: #ff5722;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -73,21 +84,26 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #b35400;
+  background-color: #b13e1b;
 }
 
 #styleBtnHome {
   margin-top: 20px;
+  margin-bottom: 20px;
   width: 100px;
   font-size: 20px;
   font-family: "Passion One", sans-serif;
 }
 
-#errorText{
+#errorText {
   width: 380px;
   background-color: rgba(255, 0, 0, 0.4);
   margin-left: 40%;
   margin-top: 10px;
   border-radius: 10px;
   color: white;
+}
+
+h2 {
+  font-size: 30px;
 }

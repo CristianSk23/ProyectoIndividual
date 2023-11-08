@@ -9,15 +9,16 @@ import {
   POST,
 } from "./Actions-Types";
 import axios from "axios";
-const URLg = `http://localhost:3001/videogames`; //* Ruta para traer los videojuegos 
+const URLg = `http://localhost:3001/videogames`; //* Ruta para traer los videojuegos
 const URLs = `http://localhost:3001/videogames/name?`; //* Ruta para buscar videjuegos por su nombre
 const URLp = `http://localhost:3001/videogames/`; //* Ruta para postear videojuegos
+const URLge = `http://localhost:3001/genres`;
 
 export const getGames = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios(URLg);
-      console.log(data);
+      await axios(URLge);
       const games = data;
 
       return dispatch({

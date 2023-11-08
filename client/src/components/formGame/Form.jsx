@@ -93,7 +93,7 @@ const Form = () => {
     } catch (error) {}
   };
   const volverBtn = () => {
-    navigate("/home")
+    navigate("/home");
   };
 
   const genresList = [
@@ -135,111 +135,113 @@ const Form = () => {
   return (
     //* Retorna los elementos del formulario para el llenado de informacion
     <form className="contenForm" onSubmit={handleSubmit}>
-      <div className="contenInput">
-        <label htmlFor="name">Nombre</label>
-        <div>
-          <input
-            type="text"
-            name="name"
-            value={gameData.name}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-
-      {errors.name && <p id="errorText">{errors.name}</p>}
-
-      <div className="contenInput">
-        <label htmlFor="description">Descripcion</label>
-        <div>
-          <input
-            type="text"
-            name="description"
-            value={gameData.description}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-
-      {errors.description && <p id="errorText">{errors.description}</p>}
-
-      <div className="contenInput">
-        <label htmlFor="released">Fecha</label>
-        <div>
-          <input
-            type="date"
-            name="released"
-            value={gameData.released}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-
-      {errors.released && <p id="errorText">{errors.released}</p>}
-
-      <div className="contenInput">
-        <label htmlFor="rating">Rating</label>
-        <div>
-          <input
-            type="number"
-            name="rating"
-            min={1}
-            max={5}
-            value={gameData.rating}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-
-      <div className="contenInput">
-        <h2>Ingresa la URL de tu imagen</h2>
-        <label htmlFor="background_image"></label>
-        <input
-          type="text"
-          name="background_image"
-          value={gameData.background_image}
-          onChange={handleChange}
-        />
-      </div>
-
-      {errors.background_image && (
-        <p id="errorText">{errors.background_image}</p>
-      )}
-
-      <div>
-        <h2>Selecciona las plataformas: </h2>
-      </div>
-      <div className="contenPlatforms">
-        {platformsList.map((platmor) => (
-          <label key={platmor}>
+      <div className="contenFormStyle">
+        <div className="contenInput">
+          <label htmlFor="name">Nombre</label>
+          <div>
             <input
-              type="checkbox"
-              value={platmor}
-              name="platforms"
+              type="text"
+              name="name"
+              value={gameData.name}
               onChange={handleChange}
             />
-            {platmor}
-          </label>
-        ))}
-      </div>
+          </div>
+        </div>
 
-      {errors.platforms && <p id="errorText">{errors.platforms}</p>}
+        {errors.name && <p id="errorText">{errors.name}</p>}
 
-      <h2>Selecciona los géneros:</h2>
-      <div className="contenGenresList">
-        {genresList.map((genre) => (
-          <label key={genre}>
+        <div className="contenInput">
+          <label htmlFor="description">Descripcion</label>
+          <div>
             <input
-              type="checkbox"
-              value={genre}
-              name="genres"
+              type="text"
+              name="description"
+              value={gameData.description}
               onChange={handleChange}
             />
-            {genre}
-          </label>
-        ))}
+          </div>
+        </div>
+
+        {errors.description && <p id="errorText">{errors.description}</p>}
+
+        <div className="contenInput">
+          <label htmlFor="released">Fecha</label>
+          <div>
+            <input
+              type="date"
+              name="released"
+              value={gameData.released}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
+        {errors.released && <p id="errorText">{errors.released}</p>}
+
+        <div className="contenInput">
+          <label htmlFor="rating">Rating</label>
+          <div>
+            <input
+              type="number"
+              name="rating"
+              min={1}
+              max={5}
+              value={gameData.rating}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
+        <div className="contenInput">
+          <h2>Ingresa la URL de tu imagen</h2>
+          <label htmlFor="background_image"></label>
+          <input
+            type="text"
+            name="background_image"
+            value={gameData.background_image}
+            onChange={handleChange}
+          />
+        </div>
+
+        {errors.background_image && (
+          <p id="errorText">{errors.background_image}</p>
+        )}
+
+        <div>
+          <h2>Selecciona las plataformas: </h2>
+        </div>
+        <div className="contenPlatforms">
+          {platformsList.map((platmor) => (
+            <label key={platmor}>
+              <input
+                type="checkbox"
+                value={platmor}
+                name="platforms"
+                onChange={handleChange}
+              />
+              {platmor}
+            </label>
+          ))}
+        </div>
+
+        {errors.platforms && <p id="errorText">{errors.platforms}</p>}
+
+        <h2>Selecciona los géneros:</h2>
+        <div className="contenGenresList">
+          {genresList.map((genre) => (
+            <label key={genre}>
+              <input
+                type="checkbox"
+                value={genre}
+                name="genres"
+                onChange={handleChange}
+              />
+              {genre}
+            </label>
+          ))}
+        </div>
+        {errors.genres && <p id="errorText">{errors.genres}</p>}
       </div>
-      {errors.genres && <p id="errorText">{errors.genres}</p>}
 
       <button type="submit" disabled={Object.keys(errors).length > 0}>
         Guardar

@@ -42,11 +42,10 @@ const gameDetail = async (req, res) => {
           description: data.description,
           rating: data.rating,
           platforms: data.platforms.map((platform) => platform.platform.name), // Extraer los nombres de las plataformas
-          genres: data.genres.map((genre) => genre.name),
+          genres: data.genres.map((genre) => genre.name), //Extraer los nombres de los generos
           released: data.released,
           image: data.background_image,
         };
-        console.log(game.genres);
         return res.status(200).json(game);
       }
     }
