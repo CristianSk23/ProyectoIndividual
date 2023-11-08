@@ -1,56 +1,90 @@
 /* style.css */
 
 .contentStyle {
-    border: 1px solid #ccc; /* Borde ligero */
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra ligera */
-    color: #ffffff; /* Texto en color naranja */
-    padding: 20px;
-    text-align: center;
-    margin: 10px;
-    width: 290px;
-    height: 200px;
-    
-  }
+  border: 1px solid #ccc; /* Borde ligero */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+  color: #ffffff; /* Texto en color naranja */
+  padding: 20px;
+  text-align: center;
+  margin: 10px;
+  width: 290px;
+  height: 200px;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  animation: animacionInitial 3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
 
-  .contenInfoStyle{
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
+.contenInfoCard {
+  background-color: rgba(103, 105, 251, 0.5);
+  border-radius: 10px;
+  opacity: 0;
+  color: white;
+  transition: opacity 0.3s;
+  font-family: "Passion One", sans-serif;
+}
+
+.contenGeneralInfoCard h2 {
+  font-size: 25px;
+  margin: -10px 0;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  font-family: "PT Sans Narrow", sans-serif;
+  animation: animacionH1 5s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
+}
+
+.contenGeneralInfoCard ul {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.contenGeneralInfoCard li {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.imgGame {
+  max-width: 40%;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+.contenGeneralInfoCard p {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.contenGeneralInfoCard:hover .contenInfoCard {
+  opacity: 1;
+}
+
+@keyframes animacionH1 {
+  0% {
+    transform: scale(0.8);
   }
-  
-  .contentStyle h2 {
-    font-size: 20px;
-    margin: 10px 0;
-    color: white
+  50% {
+    transform: scale(1);
   }
-  
-  .contentStyle h3 {
-    font-size: 18px;
-    margin: 10px 0;
+  100% {
+    transform: scale(0.8);
   }
-  
-  .contentStyle ul {
-    list-style: none;
-    padding: 0;
-    align-items: center;
+}
+
+.fade-in {
+  transform: scale(0);
+  animation: animacionInitial 1s ease-in-out;
+}
+
+@keyframes animacionInitial {
+  0% {
+    transform: scale(0);
   }
-  
-  .contentStyle li {
-    font-size: 16px;
-    margin: 5px 0;
+  100% {
+    transform: scale(1);
   }
-  
-  .imgGame {
-    max-width: 40%;
-    height: auto;
-    margin: 10px 0;
-    border-radius: 10px;
-  }
-  
-  .contentStyle p {
-    font-size: 16px;
-    margin: 10px 0;
-  }
-  
-  /* Puedes personalizar aún más estos estilos según tus preferencias y necesidades */
-  
+}

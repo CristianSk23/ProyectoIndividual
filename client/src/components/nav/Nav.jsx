@@ -1,6 +1,6 @@
 import SearchBar from "../searchBar/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
-import React from "react";
+import React, { useState } from "react";
 import { paginado } from "../actions/actions";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
@@ -17,49 +17,25 @@ const Nav = ({ onSearch }) => {
     navigate("./form");
   };
 
+  const pages = [1, 2, 3, 4, 5, 6, 7];
+
   return (
     <nav className="contenNav">
       <button id="styleButtomNav" onClick={postGame}>
         Crear <br /> Videojuego
       </button>
-      <SearchBar onSearch={onSearch} />
-      <div>
+      <div className="search">
+        <SearchBar onSearch={onSearch} />
+      </div>
+      <div className="contenbtn">
         <ul>
-          <li>
-            <button value={1} onClick={nextHandler}>
-              1
-            </button>
-          </li>
-          <li>
-            <button value={2} onClick={nextHandler}>
-              2
-            </button>
-          </li>
-          <li>
-            <button value={3} onClick={nextHandler}>
-              3
-            </button>
-          </li>
-          <li>
-            <button value={4} onClick={nextHandler}>
-              4
-            </button>
-          </li>
-          <li>
-            <button value={5} onClick={nextHandler}>
-              5
-            </button>
-          </li>
-          <li>
-            <button value={6} onClick={nextHandler}>
-              6
-            </button>
-          </li>
-          <li>
-            <button value={7} onClick={nextHandler}>
-              7
-            </button>
-          </li>
+          {pages.map((page) => (
+            <li key={page}>
+              <button value={page} onClick={nextHandler}>
+                {page}
+              </button>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>

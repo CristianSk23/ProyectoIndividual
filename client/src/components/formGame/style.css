@@ -6,24 +6,27 @@
   background-color: #f7f7f7;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-family: "PT Sans Narrow", sans-serif; /*Font para el titulo*/
 }
 
 .contenInput {
   width: 1050px;
   padding-top: 10px;
   padding-left: 20%;
+  font-size: 25px;
+  font-family: "PT Sans Narrow", sans-serif; /*Font para el titulo*/
 }
 .contenPlatforms {
-  width:1000px;
+  width: 1000px;
   height: 150px;
   padding-left: 40%;
   display: grid;
-
+  font-family: "PT Sans Narrow", sans-serif; /*Font para el titulo*/
   grid-template-columns: repeat(4, 0.1fr); /* Distribuye en bloques de 5 */
   grid-template-rows: repeat(1, 0.5fr); /* Distribuye en 3 líneas */
 }
-.contenGenres {
-  width:1000px;
+.contenGenresList {
+  width: 1000px;
   height: 150px;
   padding-left: 30%;
   display: grid;
@@ -33,13 +36,11 @@
   grid-template-rows: repeat(3, 0.5fr); /* Distribuye en 3 líneas */
 }
 
-
-
 input[type="text"],
 input[type="date"],
 input[type="number"] {
   display: inline-block;
-  width: 60%; /* Ajusta el ancho según tus preferencias */
+  width: 60%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -49,8 +50,10 @@ input[type="checkbox"] {
   margin-right: 5px;
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* Distribuye en bloques de 5 */
-  grid-template-rows: repeat(3, auto); /* Distribuye en 3 líneas */
+  grid-template-rows: repeat(3, 0.5fr); /* Distribuye en 3 líneas */
   gap: 10px;
+  justify-content: center;
+  text-align: center;
 }
 
 button[type="submit"] {
@@ -64,8 +67,27 @@ button[type="submit"] {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  justify-content: center;
+  font-family: "Passion One", sans-serif;
+  font-size: 20px;
 }
 
 button[type="submit"]:hover {
   background-color: #b35400;
+}
+
+#styleBtnHome {
+  margin-top: 20px;
+  width: 100px;
+  font-size: 20px;
+  font-family: "Passion One", sans-serif;
+}
+
+#errorText{
+  width: 380px;
+  background-color: rgba(255, 0, 0, 0.4);
+  margin-left: 40%;
+  margin-top: 10px;
+  border-radius: 10px;
+  color: white;
 }

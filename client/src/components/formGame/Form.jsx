@@ -226,7 +226,7 @@ const Form = () => {
       {errors.platforms && <p id="errorText">{errors.platforms}</p>}
 
       <h2>Selecciona los géneros:</h2>
-      <div className="contenGenres">
+      <div className="contenGenresList">
         {genresList.map((genre) => (
           <label key={genre}>
             <input
@@ -244,7 +244,7 @@ const Form = () => {
       <button type="submit" disabled={Object.keys(errors).length > 0}>
         Guardar
       </button>
-      <button onClick={volverBtn}>
+      <button onClick={volverBtn} id="styleBtnHome">
         Volver
       </button>
     </form>

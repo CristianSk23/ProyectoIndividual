@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
 import "./style.css";
+import { useState, useEffect } from "react";
+
 const Card = ({ id, name, image, genres, rating }) => {
+  const [animate, setAnimate] = useState(false);
+  console.log("Estado de carga de las card", animate);
+
+  useEffect(() => {
+    setAnimate(true);
+  }, []);
+
   return (
     <div
       className="contentStyle"
@@ -10,17 +19,20 @@ const Card = ({ id, name, image, genres, rating }) => {
         backgroundPosition: "center",
       }}
     >
-      <div className="contenInfoStyle">
-        <Link to={`/detail/${id}`}>
-          <h2>{name}</h2>
-        </Link>
-        <ul>
-          {genres.map((genre) => (
-            <li key={genre.id}>{genre.name}</li>
-          ))}
-        </ul>
-        {/* <img className="imgGame" src={image} alt={name} /> */}
-        <p>RATING: {rating}</p>
+      <div className="contenGeneralInfoCard">
+        <h2>{name}</h2>
+
+        <div className="contenInfoCard">
+          <ul>
+            {genres.map((genre) => (
+              <li key={genre.id}>{genre.name}</li>
+            ))}
+          </ul>
+          <p>RATING: {rating}</p>
+          <Link to={`/detail/${id}`}>
+            <button>More</button>
+          </Link>
+        </div>
       </div>
     </div>
   );

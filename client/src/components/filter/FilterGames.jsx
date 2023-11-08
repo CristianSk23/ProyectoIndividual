@@ -5,6 +5,7 @@ import {
   order,
   orderCards,
 } from "../actions/actions";
+import "./style.css";
 
 import { useDispatch } from "react-redux";
 
@@ -24,61 +25,85 @@ const FilterGames = ({ stateBTN }) => {
     const valor = event.target.value;
     dispatch(order(valor));
   };
-  const reset =() =>{
-    dispatch(home())
-  }
+  const reset = () => {
+    dispatch(home());
+  };
+
+  const genresList = [
+    "Action",
+    "Adventure",
+    "Arcade",
+    "Board Games",
+    "Card",
+
+    "Casual",
+    "Educational",
+    "Family",
+    "Fighting",
+    "Indie",
+
+    "Massively Multiplayer",
+    "Puzzle",
+    "Platformer",
+    "Racing",
+    "RPG",
+
+    "Shooter",
+    "Strategy",
+    "Simulation",
+    "Sports",
+  ];
 
   return (
-    <div>
-      <div>
-        <h4>Generos</h4>
-        <select onChange={handleCheck}>
-          <option value="Action">Action</option>
-          <option value="Adventure">Adventure</option>
-          <option value="Arcade">Arcade</option>
-          <option value="Board Games">Board Games</option>
-          <option value="Card">Card</option>
-          <option value="Casual">Casual</option>
-          <option value="Educational">Educational</option>
-          <option value="Family">Family</option>
-          <option value="Fighting">Fighting</option>
-          <option value="Indie">Indie</option>
-          <option value="Massively Multiplayer">Massively Multiplayer</option>
-          <option value="Puzzle">Puzzle</option>
-          <option value="Platformer">Platformer</option>
-          <option value="Racing">Racing</option>
-          <option value="RPG">RPG</option>
-          <option value="Shooter">Shooter</option>
-          <option value="Strategy">Strategy</option>
-          <option value="Simulation">Simulation</option>
-          <option value="Sports">Sports</option>
-        </select>
-      </div>
-      <div>
+    <div className="contenstyle">
+      <div className="contenOrigin">
         <h4>Origen</h4>
-        <button value="BD" onClick={dataOrigin} disabled={stateBTN}>
-          Base de Datos
-        </button>
-        <button value="API" onClick={dataOrigin}>
-          API
-        </button>
+        <div className="contenBTN">
+          <button
+            value="BD"
+            onClick={dataOrigin}
+            disabled={stateBTN}
+            id="styleBtn"
+          >
+            Base de Datos
+          </button>
+          <button value="API" onClick={dataOrigin} id="styleBtn">
+            API
+          </button>
+        </div>
       </div>
 
-      <div>
-        <h4>Rating</h4>
-        <button value="R" onClick={getOrder}>
-          Mayor Rating
-        </button>
-        <button value="RI" onClick={getOrder}>
-          Menor Rating
-        </button>
-        <button value="A" onClick={getOrder}>
-          Alfabeticamente
-        </button>
-        <button onClick={reset}>Reset</button>
+      <div className="contenGenres">
+        <div>
+          <h4>Generos</h4>
+        </div>
+        <div className="contenBTNgenres">
+          <select onChange={handleCheck}>
+            {genresList.map((genre) => (
+              <option key={genre} value={genre} id="styleOption">
+                {genre}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
-      <div>
+      <div className="contenFilter">
+        <div>
+          <h4>Filtrar</h4>
+        </div>
+        <div className="contenBtnFilter">
+          <button value="R" onClick={getOrder}>
+            Mayor Rating
+          </button>
+          <button value="RI" onClick={getOrder}>
+            Menor Rating
+          </button>
+          <button value="A" onClick={getOrder}>
+            Alfabeticamente
+          </button>
+          <button onClick={reset}>Reset</button>
+        </div>
       </div>
     </div>
   );

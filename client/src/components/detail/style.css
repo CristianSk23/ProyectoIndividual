@@ -1,27 +1,28 @@
-.detail-container {
+.detailContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 95vw; /* Ancho del 100% del viewport */
+  width: 95vw; 
   height: 100vh;
   padding: 20px;
-  margin-top: 0px;
   background-size: cover;
-  background-position: center;
-  background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente negro */
-  color: white; /* Color del texto en el contenido */
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+ 
+  font-size: 50px;
 }
 
-.detail-content {
+.detailContent {
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.7); /* Color de fondo ligeramente más claro */
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(255, 0, 0, 0.2);
   padding: 20px;
+  font-family: "PT Sans Narrow", sans-serif; /*Font para el titulo*/
 }
 
-.detail-image {
+.detailImage {
   width: 300px;
   height: 300px;
   background-size: cover;
@@ -31,22 +32,44 @@
   border-radius: 50%; /* Forma circular para la imagen */
 }
 
-.detail-description {
+.detailDescription {
   margin: 20px;
   text-align: left;
   background-color: #1f1f1f; /* Color de fondo oscuro para la descripción */
   border-radius: 5px;
   padding: 20px;
-  border: 1px solid #333; /* Borde ligeramente más oscuro */
+  width: 1620px;
+  border: 1px solid #333;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  margin-bottom: 10px;
 }
 
-.detail-container h2 {
-  font-size: 24px;
+.detailContainer h2 {
+  font-size: 50px;
+  margin: 10px 0;
+  border: 30px;
+  font-family: "Passion One", sans-serif;
+}
+.detailContainer h3 {
+  font-size: 20px;
+  margin-top: 10px;
+ 
+}
+.detailContainer h4 {
+  font-size: 50px;
+  margin-top: 10px;
+ 
+}
+
+.detailContainer p {
+  font-size: 20px;
   margin: 10px 0;
 }
 
-.detail-container p {
-  font-size: 16px;
+#styleP{
+  font-size: 30px;
   margin: 10px 0;
+}
+.contenBtnDetail{
+  margin-top: -60px;
 }

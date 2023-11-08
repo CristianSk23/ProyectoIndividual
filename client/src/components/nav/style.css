@@ -1,47 +1,79 @@
 /* nav.css */
 
 .contenNav {
-    background-color: #111;
-    color: #fff;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 10px;
-  }
-  
-  #styleButtomNav {
-    background-color: #ff5722;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-right: 10px;
-  }
-  
-  #styleButtomNav:hover {
-    background-color: #ff3d00;
-  }
-  
-  ul {
-    list-style: none;
-    display: flex;
-    gap: 10px;
-  }
-  
-  li button {
-    background-color: #bd3b3b;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  li button:hover {
-    background-color: #333;
-  }
-  
+  background-color: #ffbdbd;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  width: 1750px;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+}
+
+#styleButtomNav {
+  background-color: #ff5722;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+#styleButtomNav:hover {
+  background-color: #ff3d00;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.contenbtn button {
+  background-color: #ff5722;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-left: 5px;
+
+  /*Animaciones*/
+  transition: background-color 0.3s;
+  transition-timing-function: cubic-bezier(1, 0, 0, 1);
+}
+
+.contenbtn button:hover {
+  background-color: #333;
+  transform: scale(1.3);
+  border: 2px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: rgba(255, 132, 66, 0.541);
+}
+#styleButtomNav:hover {
+  background-color: rgb(207, 87, 27);
+  transform: scale(1.1);
+  transition-timing-function: cubic-bezier(1, 0, 0, 1);
+  border: 2px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.541);
+}
+
+.contenbtn {
+  width: 391px;
+  height: 90px;
+}
+.search {
+  width: 300px;
+  height: 57px;
+  margin-top: 20px;
+  margin-left: 300px;
+}

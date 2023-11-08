@@ -1,0 +1,109 @@
+.contenstyle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+  background-color: #f2f2f2;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 1770px;
+  height: 70px;
+  border-radius: 20px;
+  font-size: 30px;
+  margin-right: 70px;
+  font-family: "PT Sans Narrow", sans-serif;
+}
+
+.contenOrigin {
+  /*Contiene los elementos para el filtrado del origen*/
+  width: 300px;
+  margin-top: -30px;
+  margin-bottom: 20px;
+}
+
+.contenGenres {
+  /*Contenedor general para los generos*/
+  width: 0px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 90px;
+  margin: 10px;
+  margin-top: 5px;
+  margin-left: 100px;
+}
+.contenFilter {
+  /*Contenedor General para los filtros*/
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  gap: 5px;
+}
+.contenOrigin h4 {
+  margin-right: 70px;
+}
+.contenBTN {
+  /*Contiene los botones del filtrado*/
+  display: flex;
+  flex-direction: row;
+  margin-top: -38px;
+  gap: 10px;
+}
+.contenBTNgenres {
+  /*Contenedor para los botones de generos*/
+  margin: -50px;
+  margin-bottom: 50px;
+}
+.contenBtnFilter {
+  /*Contenedor para los botones de Filtrado*/
+  display: flex;
+  flex-direction: row;
+  margin-top: -45px;
+  margin-bottom: 60px;
+  gap: 10px;
+}
+
+.contenBTNgenres select {
+  background-color: #feaa90;
+  text-align: center;
+  color: white;
+  font-family: "PT Sans Narrow", sans-serif;
+  font-size: 15px;
+}
+.contenBTNgenres select:hover {
+  transform: scale(1.1);
+  transition-duration: 0.5s;
+}
+.contenBTNgenres select:hover:focus {
+  transform: scale(1);
+  transition-duration: 5s;
+}
+
+.contenOrigin button,
+.contenBtnFilter button {
+  padding: 5px 10px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  width: 115px;
+  height: 30px;
+  margin-top: 3px;
+  font-family: "Passion One", sans-serif;
+}
+
+.contenBTN button:hover,
+.contenBtnFilter button:hover {
+  background-color: #333;
+  transform: scale(1.1);
+}
+
+.contenBtnOrigin button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
