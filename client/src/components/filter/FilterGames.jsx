@@ -1,15 +1,12 @@
-import {
-  genreFilter,
-  getOrigin,
-  home,
-  order,
-  orderCards,
-} from "../actions/actions";
+import { genreFilter, getOrigin, home, order } from "../actions/actions";
 import "./style.css";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const FilterGames = ({ stateBTN }) => {
+  const allGenres = useSelector((state) => state.allGenres);
+  console.log(allGenres.name);
+
   const dispatch = useDispatch();
 
   const handleCheck = (event) => {
@@ -29,30 +26,10 @@ const FilterGames = ({ stateBTN }) => {
     dispatch(home());
   };
 
-  const genresList = [
-    "Action",
-    "Adventure",
-    "Arcade",
-    "Board Games",
-    "Card",
-
-    "Casual",
-    "Educational",
-    "Family",
-    "Fighting",
-    "Indie",
-
-    "Massively Multiplayer",
-    "Puzzle",
-    "Platformer",
-    "Racing",
-    "RPG",
-
-    "Shooter",
-    "Strategy",
-    "Simulation",
-    "Sports",
-  ];
+  const genresList = allGenres.map((genre) => {
+    return genre.name;
+  });
+  console.log("Obtengo el name de los generos", genresList);
 
   return (
     <div className="contenstyle">

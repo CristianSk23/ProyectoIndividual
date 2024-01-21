@@ -6,4 +6,5 @@ export const SEARCH = "SEARCH"
 export const PAGINADO = "PAGINADO"
 export const HOME = "HOME"
 export const POST = "POST"
+export const GENRES = "GENRES"
 

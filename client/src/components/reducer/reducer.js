@@ -7,12 +7,14 @@ import {
   PAGINADO,
   HOME,
   POST,
+  GENRES,
 } from "../actions/Actions-Types";
 
 const initialState = {
   allGames: [],
   bckAllGames: [],
   gamesEdited: [],
+  allGenres: [],
   btnBD: false,
 };
 
@@ -112,6 +114,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...initialState,
         btnBD: false,
+      };
+    }
+
+    case GENRES: {
+      return {
+        ...state,
+        allGenres: action.payload,
       };
     }
 
