@@ -7,10 +7,11 @@ const getGames = async (req, res) => {
     let allGamesDB;
     const listAllGames = [];
 
-    const gamesDB = await Videogame.findAll({ //* Trae todos los videojuegos de la base de datos 
-      include: { model: Genres, trough: "user_Videogame" },
-    });
-
+    /* const gamesDB = await Videogame.findAll({
+      //* Trae todos los videojuegos de la base de datos
+      include: { model: Genres, through: "user_Videogame" },
+    }); */
+    console.log("Llamado al Backend ");
     let listAllGamesAPI = [];
     for (let i = 1; i < 4; i++) {
       //* Trae todos los videojuegos de la API, un total de 120;
@@ -23,7 +24,8 @@ const getGames = async (req, res) => {
 
     const sliceListAllGames = listAllGamesAPI.slice(0, 100); //* recorta a un total de 100
 
-    if (gamesDB.length > 0) {
+    console.log("Todos los videojuegos ", sliceListAllGames);
+/*     if (gamesDB.length > 0) {
       allGamesDB = await gamesDB.map((element) => ({
         id: element.id,
         name: element.name,
@@ -33,8 +35,8 @@ const getGames = async (req, res) => {
         released: element.released,
         genres: element.genres,
       }));
-      listAllGames.push(...allGamesDB)
-    }
+      listAllGames.push(...allGamesDB);
+    } */
 
     if (sliceListAllGames.length > 0) {
       const games = sliceListAllGames.map((game) => ({
@@ -47,11 +49,10 @@ const getGames = async (req, res) => {
         genres: game.genres,
       }));
 
-      listAllGames.push(...games)
-      
-      return res.status(200).json(listAllGames)
-    } 
-    else {
+      listAllGames.push(...games);
+
+      return res.status(200).json(listAllGames);
+    } else {
       return res.status(404).send("Not found");
     }
   } catch (error) {
