@@ -10,10 +10,13 @@ import {
   GENRES,
 } from "./Actions-Types";
 import axios from "axios";
-const URLg = `http://localhost:3001/videogames`; //* Ruta para traer los videojuegos
-const URLs = `http://localhost:3001/videogames/name?`; //* Ruta para buscar videjuegos por su nombre
-const URLp = `http://localhost:3001/videogames/`; //* Ruta para postear videojuegos
-const URLge = `http://localhost:3001/genres`;
+
+axios.defaults.baseURL = "http://localhost:3001";
+
+const URLg = `/videogames`; //* Ruta para traer los videojuegos
+const URLs = `/videogames/name?`; //* Ruta para buscar videjuegos por su nombre
+const URLp = `/videogames/`; //* Ruta para postear videojuegos
+const URLge = `/genres`;
 
 export const getGames = () => {
   return async (dispatch) => {
